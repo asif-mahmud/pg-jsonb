@@ -3,7 +3,7 @@ package pgjsonb_test
 import (
 	"testing"
 
-	"github.com/asif-mahmud/pgjsonb"
+	pgjsonb "github.com/asif-mahmud/pg-jsonb"
 )
 
 func TestJsonNullValue(t *testing.T) {
