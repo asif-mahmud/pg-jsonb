@@ -27,6 +27,7 @@ func (j *JSONB) unmarshal(data []byte) error {
 	return nil
 }
 
+// Implements sql.Scanner interface
 func (j *JSONB) Scan(value any) error {
 	if value == nil {
 		j.value = nil
@@ -49,31 +50,42 @@ func (j *JSONB) Scan(value any) error {
 	return j.unmarshal(data)
 }
 
+// Implements sql.Valuer interface
 func (j JSONB) Value() (driver.Value, error) {
 	return json.Marshal(j.value)
 }
 
+// Implements json.Marshaler interface
 func (j JSONB) MarshalJSON() ([]byte, error) {
 	return json.Marshal(j.value)
 }
 
+// Implements json.Unmarshaler interface
 func (j *JSONB) UnmarshalJSON(data []byte) error {
 	return j.unmarshal(data)
 }
 
+// Returns json encoded string for the underlying value
 func (j JSONB) String() string {
 	str, _ := j.MarshalJSON()
 	return string(str)
 }
 
+// Sets underlying value, can be any valid value that
+// can be encoded into valid json string
 func (j *JSONB) Set(value any) {
 	j.value = value
 }
 
+// Returns the underlying value. This is json decoded
+// value scanned from sql.Row or any valid value set by
+// the Set method.
 func (j *JSONB) Get() any {
 	return j.value
 }
 
+// Creates new JSONB instance and set the
+// underlying value to value
 func New(value any) JSONB {
 	return JSONB{
 		value: value,

@@ -22,6 +22,10 @@ godoc: [https://pkg.go.dev/github.com/asif-mahmud/pg-jsonb](https://pkg.go.dev/g
 
 ## Version history
 
+### Version 1.0.0
+
+Documentation updated
+
 ### Version 0.8.0
 
 Initial version with tests for scanner and valuer interfaces.
